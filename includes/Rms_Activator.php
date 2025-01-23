@@ -9,6 +9,7 @@ class Rms_Activator {
 	/**
 	 * This is the main method that gets called every time the plugin is activated
 	 * */
+
 	public static function activate() : void {
 
 		/**
@@ -60,6 +61,9 @@ class Rms_Activator {
 
 	}
 
+	/**
+	 * This method helps create page in accordance to the supplied title, slug, and template.
+	 * */
 
 	private function rms_page_create($data) : void {
 		$slug = $data['slug'];

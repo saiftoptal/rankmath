@@ -9,6 +9,7 @@ class Rms_Helper_Controller {
 	/**
 	 * Since get_page_by_title() function is depricated in WordPress version of 6.2
 	 */
+
 	public static function get_page_by_title( $page_title, $output = OBJECT, $post_type = 'page' ) : ?object {
 		$args  = array(
 			'title'                  => $page_title,
