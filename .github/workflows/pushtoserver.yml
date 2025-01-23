@@ -16,6 +16,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          port: 21098
           script: |
                   cd public_html/rankmath.saif.london/wp-content/plugins/cool-kids-network
                   eval $(ssh-agent -s)
