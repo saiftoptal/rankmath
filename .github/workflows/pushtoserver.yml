@@ -1,0 +1,23 @@
+name: 🚀 Deploy Changes to Server
+on:
+  push:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+                  cd public_html/rankmath.saif.london/wp-content/plugins/cool-kids-network
+                  eval $(ssh-agent -s)
+                  ssh-add ~/.ssh/rankmathwp
+                  git pull origin main
