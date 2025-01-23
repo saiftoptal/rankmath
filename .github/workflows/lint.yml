@@ -1,0 +1,36 @@
+name: Lint check
+on:
+  push:
+    branches:
+      - dev
+
+permissions: {}
+
+jobs:
+
+  Lint:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
+      - name: Super-linter
+        uses: super-linter/super-linter/slim@v7.2.1 # x-release-please-version
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_PHP_PHPCS: false
+          FIX_CSS_PRETTIER: true
+          FIX_CSS: true
