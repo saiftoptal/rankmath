@@ -20,5 +20,5 @@ jobs:
           script: |
                   cd public_html/rankmath.saif.london/wp-content/plugins/cool-kids-network
                   eval $(ssh-agent -s)
-                  ssh-add ~/.ssh/rankmathwp
+                  ssh-add ~/.ssh/rankmath
                   git pull origin main
