@@ -31,3 +31,20 @@ function activate_rms():void{
 	(new Rms_Activator())->activate();
 }
 register_activation_hook(__FILE__, 'activate_rms');
+
+
+
+/**
+ * This code allows to autoload PHP Classes from controllers folder.
+ */
+
+
+$plugin_path = plugin_dir_path(__FILE__);
+$classes = [glob($plugin_path . 'controllers/*.php')];
+if ($classes) {
+	foreach ($classes as $class) {
+		foreach ($class as $file) {
+			require_once $file;
+		}
+	}
+}
