@@ -21,11 +21,9 @@ class Rms_Activator {
 		]);
 		add_role('cooler_kid', 'Cooler Kid', [
 			'read' => true,
-			// Optionally add more capabilities
 		]);
 		add_role('coolest_kid', 'Coolest Kid', [
 			'read' => true,
-			// Possibly more capabilities
 		]);
 
 		/**
@@ -38,6 +36,15 @@ class Rms_Activator {
 				'title' => 'Register',
 				'slug' => 'register',
 				'template' => 'rms_register_template.php'
+			)
+		);
+
+		// Login page
+		self::rms_page_create(
+			array(
+				'title' => 'Login',
+				'slug' => 'login',
+				'template' => 'rms_login_template.php'
 			)
 		);
 
