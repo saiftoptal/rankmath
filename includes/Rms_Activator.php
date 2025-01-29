@@ -53,7 +53,7 @@ class Rms_Activator {
 			array(
 				'title' => 'Profile',
 				'slug' => 'profile',
-				'template' => '[rms_profile_view]'
+				'shortcode' => '[rms_profile_view]'
 			)
 		);
 
@@ -62,14 +62,14 @@ class Rms_Activator {
 			array(
 				'title' => 'Cool Kids\' List',
 				'slug' => 'cool-kids-list',
-				'template' => '[rms_user_list]'
+				'shortcode' => '[rms_user_list]'
 			)
 		);
 
 	}
 
 	/**
-	 * This method helps create page in accordance to the supplied title, slug, and template.
+	 * This method helps create page in accordance to the supplied title, slug, and content.
 	 * */
 
 	private function rms_page_create($data) : void {
@@ -89,8 +89,6 @@ class Rms_Activator {
 			$post_id = wp_insert_post( $uploader_page );
 			if ( !$post_id ) {
 				wp_die( 'Error creating template page' );
-			} else {
-				update_post_meta( $post_id, '_wp_page_template', $data['template'].'.php' );
 			}
 		}
 	}
