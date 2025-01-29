@@ -76,7 +76,7 @@ class Rms_Activator {
 		$slug = $data['slug'];
 		$title = $data['title'];
 		$shortcode = $data['shortcode'];
-		if ( null == Rms_Helper_Controller::get_page_by_title($title)) {
+		if ( !get_page_by_path($slug) ) {
 			$uploader_page = array(
 				'comment_status'        => 'closed',
 				'ping_status'           => 'closed',
