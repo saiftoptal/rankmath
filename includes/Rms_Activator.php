@@ -35,7 +35,7 @@ class Rms_Activator {
 			array(
 				'title' => 'Register',
 				'slug' => 'register',
-				'template' => 'rms_register_template.php'
+				'shortcode' => '[rms_signup_form]'
 			)
 		);
 
@@ -44,7 +44,7 @@ class Rms_Activator {
 			array(
 				'title' => 'Login',
 				'slug' => 'login',
-				'template' => 'rms_login_template.php'
+				'shortcode' => '[rms_login_form]'
 			)
 		);
 
@@ -53,7 +53,7 @@ class Rms_Activator {
 			array(
 				'title' => 'Profile',
 				'slug' => 'profile',
-				'template' => 'rms_profile_template.php'
+				'template' => '[rms_profile_view]'
 			)
 		);
 
@@ -62,7 +62,7 @@ class Rms_Activator {
 			array(
 				'title' => 'Cool Kids\' List',
 				'slug' => 'cool-kids-list',
-				'template' => 'rms_user_list_template.php'
+				'template' => '[rms_user_list]'
 			)
 		);
 
@@ -75,6 +75,7 @@ class Rms_Activator {
 	private function rms_page_create($data) : void {
 		$slug = $data['slug'];
 		$title = $data['title'];
+		$shortcode = $data['shortcode'];
 		if ( null == Rms_Helper_Controller::get_page_by_title($title)) {
 			$uploader_page = array(
 				'comment_status'        => 'closed',
@@ -82,7 +83,8 @@ class Rms_Activator {
 				'post_name'             => $slug,
 				'post_title'            => $title,
 				'post_status'           => 'publish',
-				'post_type'             => 'page'
+				'post_type'             => 'page',
+				'post_content'          => $shortcode
 			);
 			$post_id = wp_insert_post( $uploader_page );
 			if ( !$post_id ) {
