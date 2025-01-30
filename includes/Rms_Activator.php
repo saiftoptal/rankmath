@@ -72,23 +72,25 @@ class Rms_Activator {
 	 * This method helps create page in accordance to the supplied title, slug, and content.
 	 * */
 
-	private function rms_page_create($data) : void {
-		$slug = $data['slug'];
-		$title = $data['title'];
-		$shortcode = $data['shortcode'];
-		if ( !get_page_by_path($slug) ) {
-			$uploader_page = array(
-				'comment_status'        => 'closed',
-				'ping_status'           => 'closed',
-				'post_name'             => $slug,
-				'post_title'            => $title,
-				'post_status'           => 'publish',
-				'post_type'             => 'page',
-				'post_content'          => $shortcode
-			);
-			$post_id = wp_insert_post( $uploader_page );
-			if ( !$post_id ) {
-				wp_die( 'Error creating template page' );
+	private static function rms_page_create($data) : void {
+		$existing_page = get_page_by_path( $data['slug'] );
+
+		if ( $existing_page ) {
+			// If page already exists, update its content to ensure the shortcode is present.
+			$existing_page->post_content = $data['shortcode'];
+			wp_update_post( $existing_page );
+		} else {
+			// Create a new page with the given title, slug, and shortcode content.
+			$page_id = wp_insert_post( [
+				'post_title'   => $data['title'],
+				'post_name'    => $data['slug'],
+				'post_status'  => 'publish',
+				'post_type'    => 'page',
+				'post_content' => $data['shortcode']
+			] );
+
+			if ( is_wp_error( $page_id ) ) {
+				error_log( 'Rms_Activator: Failed to create page -> ' . $data['title'] );
 			}
 		}
 	}
