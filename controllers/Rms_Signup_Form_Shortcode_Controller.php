@@ -5,7 +5,7 @@
  * Renders the [rms_signup_form] shortcode.
  */
 
-class Rms_Signup_Form_Shortcode {
+class Rms_Signup_Form_Shortcode_Controller {
 
 	/**
 	 * Constructor hooks into 'init' to register the shortcode.

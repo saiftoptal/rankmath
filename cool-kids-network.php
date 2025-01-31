@@ -55,5 +55,6 @@ if ($classes) {
  * Instantiate our controller classes on 'plugins_loaded'.
  */
 add_action( 'plugins_loaded', function() {
-	new Rms_Signup_Form_Shortcode();
+	new Rms_Signup_Form_Shortcode_Controller();
+	new Rms_Shortcode_Profile();
 });
