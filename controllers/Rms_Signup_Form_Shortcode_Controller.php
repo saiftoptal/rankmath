@@ -57,7 +57,7 @@ class Rms_Signup_Form_Shortcode_Controller {
 
 			// If this email is already taken, stop processing.
 			if ( email_exists( $email ) ) {
-				wp_die( 'This email is already registered. Please log in instead.' );
+				wp_die( 'This email is already registered. Please <a href="'.site_url().'/login">log in</a> instead.' );
 			}
 
 			// Create the user with a random password.

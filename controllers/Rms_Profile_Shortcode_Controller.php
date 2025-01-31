@@ -4,7 +4,7 @@
  * Shortcode controller for displaying the current user's profile.
  * Renders the [rms_profile_view] shortcode.
  */
-class Rms_Shortcode_Profile {
+class Rms_Profile_Shortcode_Controller {
 
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_shortcode' ] );
