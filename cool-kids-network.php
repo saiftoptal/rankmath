@@ -91,3 +91,13 @@ add_action( 'plugins_loaded', function() {
  */
 
 add_filter('show_admin_bar', '__return_false');
+
+
+/**
+ * Register our REST routes
+ */
+add_action( 'rest_api_init', function() {
+	// The Rms_Api_Controller defines and registers our "role-assignment" endpoint.
+	$api_controller = new Rms_Api_Controller();
+	$api_controller->register_routes();
+});

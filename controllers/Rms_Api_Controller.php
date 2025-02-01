@@ -28,8 +28,8 @@ class Rms_Api_Controller {
 	 * In production, you may want a more secure approach.
 	 */
 	public function api_permissions_check( $request ) {
-		$secret = $request->get_header( 'x-shared-secret' );
-		return ( $secret === 'SuperSecretAPIAuthenticationToken' );
+		$secret = $request->get_header( 'authorization' );
+		return ( $secret === 'Bearer SuperSecretAPIAuthenticationToken' );
 	}
 
 	/**
