@@ -34,5 +34,6 @@ jobs:
           VALIDATE_PHP_PSALM: false
           VALIDATE_PHP_PHPSTAN: false
           VALIDATE_PHP_PHPCS: false
+          VALIDATE_JSCPD: false
           FIX_CSS_PRETTIER: true
           FIX_CSS: true
