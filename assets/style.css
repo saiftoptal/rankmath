@@ -50,12 +50,44 @@ body {
     color: white;
 }
 
+.rms-page-content form {
+    display: flex;
+    align-items: center;
+}
+
+.rms-page-content form label {
+    margin-right: 10px;
+}
+
+.rms-page-content form input[type="email"] {
+    padding: 7px;
+    border: 0;
+    width: 230px;
+    border-radius: 5px;
+}
+
+.rms-page-content form input[type="submit"] {
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 0;
+    margin-left: 10px;
+    background: black;
+    font-weight: 600;
+    color: white;
+    font-size: 18px;
+}
+
 .rms-user-profile {
     list-style: none;
 }
 
 .rms-user-profile li {
     padding: 5px 0;
+}
+
+.rms-user-list-table tbody tr:nth-child(odd) {
+    background: rgb(255 255 255);
+    color: #695dbe;
 }
 
 .rms-user-list-table th,

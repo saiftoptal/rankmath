@@ -63,7 +63,7 @@ class Rms_Login_Form_Shortcode_Controller {
 
 		ob_start();
 		?>
-        <form method="post" style="max-width: 400px;">
+        <form method="post"">
             <label for="rms_login_email">Email</label><br>
             <input type="email" name="rms_login_email" required><br><br>
             <input type="submit" name="rms_login_submit" value="Log In">
