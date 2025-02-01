@@ -46,7 +46,7 @@ class Rms_User_list_Shortcode_Controller {
 
 		ob_start();
 		?>
-		<table border="1" cellpadding="5" cellspacing="0">
+		<table class="rms-user-list-table">
 			<thead>
 			<tr>
 				<th>Name</th>
@@ -65,14 +65,14 @@ class Rms_User_list_Shortcode_Controller {
 				$last_name  = get_user_meta( $uid, 'last_name', true );
 				$country    = get_user_meta( $uid, 'country', true );
 				$user_email = $user_obj->user_email;
-				$role_list  = implode( ', ', $user_obj->roles );
+				$role       = Rms_Helper_Controller::user_highest_role($user_obj);
 				?>
 				<tr>
 					<td><?php echo esc_html( $first_name . ' ' . $last_name ); ?></td>
 					<td><?php echo esc_html( $country ); ?></td>
 					<?php if ( 'Coolest Kid' === $current_user_role ) : ?>
 						<td><?php echo esc_html( $user_email ); ?></td>
-						<td><?php echo esc_html( $role_list ); ?></td>
+						<td><?php echo esc_html( $role ); ?></td>
 					<?php endif; ?>
 				</tr>
 			<?php endforeach; ?>

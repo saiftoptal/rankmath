@@ -34,7 +34,7 @@ class Rms_Profile_Shortcode_Controller {
 
 		ob_start();
 		?>
-		<ul>
+		<ul class="rms-user-profile">
 			<li><strong>First Name:</strong> <?php echo esc_html( $first_name ); ?></li>
 			<li><strong>Last Name:</strong> <?php echo esc_html( $last_name ); ?></li>
 			<li><strong>Country:</strong> <?php echo esc_html( $country ); ?></li>

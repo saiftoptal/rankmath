@@ -26,6 +26,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'RMS_VERSION', '1.0.0' );
 
 /**
+ * Enqueue plugin assets (styles, scripts, etc.).
+ */
+add_action( 'wp_enqueue_scripts', 'rms_enqueue_styles' );
+function rms_enqueue_styles() {
+	wp_enqueue_style( 'rms-style', plugin_dir_url( __FILE__ ) . 'assets/style.css', array(), RMS_VERSION );
+}
+
+/**
  * Include the plugin activator, which runs during plugin activation. It creates the necessary roles, and pages, if they don't exist already.
  */
 
@@ -52,6 +60,22 @@ if ($classes) {
 }
 
 /**
+ * Filter the template for the plugin pages.
+ * If a page has the custom template meta 'rms_template.php', load the plugin template.
+ */
+add_filter( 'template_include', 'rms_plugin_template', 99 );
+function rms_plugin_template( $template ) {
+	if ( is_page() ) {
+		global $post;
+		$plugin_template = get_post_meta( $post->ID, '_wp_page_template', true );
+		if ( 'rms_template.php' === $plugin_template ) {
+			return plugin_dir_path( __FILE__ ) . 'templates/rms_template.php';
+		}
+	}
+	return $template;
+}
+
+/**
  * Instantiate our controller classes on 'plugins_loaded'.
  */
 add_action( 'plugins_loaded', function() {
@@ -59,4 +83,11 @@ add_action( 'plugins_loaded', function() {
 	new Rms_Profile_Shortcode_Controller();
 	new Rms_Login_Form_Shortcode_Controller();
 	new Rms_User_list_Shortcode_Controller();
+	new Rms_Header_Menu_Shortcode_Controller();
 });
+
+/**
+ * Hide the admin bar from the frontend of the site*
+ */
+
+add_filter('show_admin_bar', '__return_false');
