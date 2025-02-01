@@ -120,5 +120,4 @@ class Rms_Activator {
 			}
 		}
 	}
-
 }
