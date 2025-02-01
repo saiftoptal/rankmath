@@ -93,14 +93,22 @@ class Rms_Api_Controller {
 		}
 
 		// Assign the new role to this user.
-		$wp_user = new WP_User( $user->ID );
-		$wp_user->set_role( $new_role );
+		if (in_array(Rms_Helper_Controller::user_highest_role($user), array('Cool Kid', 'Cooler Kid', 'Coolest Kid'))){
+			$wp_user = new WP_User( $user->ID );
+			$wp_user->set_role( $new_role );
 
-		return [
-			'success'  => true,
-			'message'  => 'User role has been updated.',
-			'user_id'  => $user->ID,
-			'new_role' => $new_role
-		];
+			return [
+				'success'  => true,
+				'message'  => 'User role has been updated.',
+				'user_id'  => $user->ID,
+				'new_role' => $new_role
+			];
+		} else {
+			return new WP_Error(
+				'user_not_authorized',
+				'You are not authorized to change role for this user.',
+				[ 'status' => 403 ]
+			);
+		}
 	}
 }
