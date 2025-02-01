@@ -58,4 +58,5 @@ add_action( 'plugins_loaded', function() {
 	new Rms_Signup_Form_Shortcode_Controller();
 	new Rms_Profile_Shortcode_Controller();
 	new Rms_Login_Form_Shortcode_Controller();
+	new Rms_User_list_Shortcode_Controller();
 });

@@ -7,18 +7,18 @@
 class Rms_Profile_Shortcode_Controller {
 
 	public function __construct() {
-		add_action( 'init', [ $this, 'register_shortcode' ] );
+		add_action( 'init', [ $this, 'rms_register_profile_shortcode' ] );
 	}
 
-	public function register_shortcode(): void {
-		add_shortcode( 'rms_profile_view', [ $this, 'render_shortcode' ] );
+	public function rms_register_profile_shortcode(): void {
+		add_shortcode( 'rms_profile_view', [ $this, 'rms_render_profile_shortcode' ] );
 	}
 
 	/**
 	 * Shows the logged-in user's identity data:
 	 * first name, last name, country, email, and role.
 	 */
-	public function render_shortcode(): string {
+	public function rms_render_profile_shortcode(): string {
 		if ( ! is_user_logged_in() ) {
 			return '<p>You must be logged in to view your profile. <a href="'. site_url() .'/login">Login here</a>.</p>';
 		}
@@ -34,7 +34,6 @@ class Rms_Profile_Shortcode_Controller {
 
 		ob_start();
 		?>
-		<h2>My Profile</h2>
 		<ul>
 			<li><strong>First Name:</strong> <?php echo esc_html( $first_name ); ?></li>
 			<li><strong>Last Name:</strong> <?php echo esc_html( $last_name ); ?></li>

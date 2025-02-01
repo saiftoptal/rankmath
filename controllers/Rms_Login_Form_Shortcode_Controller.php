@@ -7,18 +7,18 @@
 class Rms_Login_Form_Shortcode_Controller {
 
 	public function __construct() {
-		add_action( 'init', [ $this, 'register_shortcode' ] );
+		add_action( 'init', [ $this, 'rms_register_login_form_shortcode' ] );
 	}
 
-	public function register_shortcode(): void {
-		add_shortcode( 'rms_login_form', [ $this, 'render_shortcode' ] );
+	public function rms_register_login_form_shortcode(): void {
+		add_shortcode( 'rms_login_form', [ $this, 'rms_render_login_form_shortcode' ] );
 	}
 
 	/**
 	 * Outputs a simple email-only login form and handles authentication
 	 * by email only, ignoring password checks as a proof-of-concept.
 	 */
-	public function render_shortcode(): string {
+	public function rms_render_login_form_shortcode(): string {
 		if ( is_user_logged_in() ) {
 			return '<p>You are already logged in.</p>';
 		}
@@ -28,7 +28,6 @@ class Rms_Login_Form_Shortcode_Controller {
 		ob_start();
 		?>
 		<form method="post" style="max-width: 400px;">
-			<h2>Login</h2>
 			<label for="rms_login_email">Email</label><br>
 			<input type="email" name="rms_login_email" required><br><br>
 			<input type="submit" name="rms_login_submit" value="Log In">
