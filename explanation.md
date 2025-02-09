@@ -2,17 +2,17 @@
 
 ## Overview
 
-The Cool Kids Network plugin is a proof-of-concept WordPress solution for managing user registration, login, and role-based content access. It provides a minimal, self-contained user interface with custom pages that bypass the active theme’s header and footer. This ensures that the plugin is plug & play—requiring no additional settings or theme modifications after activation. 
+The Cool Kids Network plugin is a proof-of-concept WordPress solution for managing user registration, login, and role-based content access. It provides a minimal, self-contained user interface with custom pages that bypass the active theme’s header and footer. This ensures that the plugin is plug & play — requiring no additional settings or theme modifications after activation. 
 
 [User may decide to make the Sign Up i.e. Register page their static homepage.] 
 
 ## Problem Statement
 
-In our own words, the problem was to build a WordPress website that:
+The problem was to build a WordPress website that:
 - Allows anonymous users to sign up and automatically generates a character profile using data from an external API (randomuser.me).
-- Enables users to log in (using an email-only, passwordless method for simplicity) and view their personal profile.
+- Enables users to log in (using an email-only, passwordless method for simplicity) and view their personal profile. But sensitive roles like administrator are not allowed to log in this way.
 - Provides role-based access so that users with elevated roles (“Cooler Kid” and “Coolest Kid”) can view additional information about other users.
-- Lets an administrator update user roles via a secure REST API endpoint.
+- Provides a secure REST API endpoint to update user roles.
 - Operates completely independently of the active theme by creating its own pages with a custom template (i.e., no unwanted header, footer, or extra theme content).
 
 ## Technical Specification and Design
@@ -74,7 +74,7 @@ cool-kids-network/
    By creating our own pages on activation and assigning them a custom template (`rms_template.php`), we completely override the theme’s output. This ensures a plug & play experience—users need not modify their theme to use the plugin.
 
 3. **Early Form Processing:**  
-   Both signup and login form submissions are processed on the `init` hook. This prevents the “headers already sent” issue by ensuring that any redirection happens before output is generated.
+   Both signup and login form submissions are processed on the `init` hook. This prevents the common “headers already sent” issue by ensuring that any redirection happens before output is generated.
 
 4. **Role-Based Access Control:**  
    Custom roles (`cool_kid`, `cooler_kid`, and `coolest_kid`) are created on activation. The plugin enforces role-based restrictions in the user list and API endpoint, aligning with the specified user stories.
@@ -83,7 +83,7 @@ cool-kids-network/
    The plugin exposes a REST API endpoint for updating user roles, secured by a shared secret header. This provides a modern, decoupled integration point for administrative functions.
 
 6. **Observability and Resilience:**  
-   Critical operations (like page creation and meta updates) include logging via `error_log()`. This ensures that any issues can be monitored and troubleshooted effectively. The code gracefully handles errors using `wp_die()` with clear messaging.
+   Critical operations (like page creation and meta updates) include logging via `error_log()`. This ensures that any issues can be monitored and troubleshooted effectively. For simplicity, the code gracefully handles errors using `wp_die()` with clear messaging.
 
 ### Implementation Details
 
@@ -120,6 +120,6 @@ cool-kids-network/
 
 This solution is a robust, production-ready implementation of the Cool Kids Network. It fulfills all the specified user stories while adhering to modern development practices. The design is modular, self-contained, and easy to monitor, ensuring that it can be maintained and scaled over time.
 
-My approach—combining object-oriented design with careful hook management and custom templating—ensures a plug & play experience that meets the admin’s desired outcomes without requiring additional theme modifications. I am confident that this solution demonstrates not only technical proficiency but also the ability to design maintainable, resilient systems that align with your engineering best practices.
+My approach — combining object-oriented design with careful hook management and custom templating—ensures a plug & play experience that meets the admin’s desired outcomes without requiring additional theme modifications. I am confident that this solution demonstrates not only technical proficiency but also the ability to design maintainable, resilient systems that align with your engineering best practices.
 
 Thank you for considering my solution. I look forward to the opportunity to contribute my skills to your team.
