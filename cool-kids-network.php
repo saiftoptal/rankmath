@@ -4,7 +4,7 @@
  * Plugin Name: Cool Kids Network
  * Plugin URI: https://rankmath.saif.london/
  * Description: This plugin adds the crucial functionalities for the Cool Kids Network
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Saif Bin Alam
  * Author URI: https://saif.london/
  * License: GPL2
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Currently plugin version.
  */
 
-define( 'RMS_VERSION', '1.0.1' );
+define( 'RMS_VERSION', '1.0.2' );
 
 /**
  * Enqueue plugin assets (styles, scripts, etc.).
