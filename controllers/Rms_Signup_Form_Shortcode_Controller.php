@@ -84,7 +84,7 @@ class Rms_Signup_Form_Shortcode_Controller {
 		// Output the sign-up form.
 		ob_start();
 		?>
-        <form method="post" style="max-width: 400px;">
+        <form method="post">
             <label for="rms_signup_email">Email</label><br>
             <input type="email" name="rms_signup_email" required><br><br>
             <input type="submit" name="rms_signup_submit" value="Sign Up">

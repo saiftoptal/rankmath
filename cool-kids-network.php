@@ -4,7 +4,7 @@
  * Plugin Name: Cool Kids Network
  * Plugin URI: https://rankmath.saif.london/
  * Description: This plugin adds the crucial functionalities for the Cool Kids Network
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: Saif Bin Alam
  * Author URI: https://saif.london/
  * License: GPL2
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Currently plugin version.
  */
 
-define( 'RMS_VERSION', '1.0.0' );
+define( 'RMS_VERSION', '1.0.2' );
 
 /**
  * Enqueue plugin assets (styles, scripts, etc.).
@@ -91,3 +91,13 @@ add_action( 'plugins_loaded', function() {
  */
 
 add_filter('show_admin_bar', '__return_false');
+
+
+/**
+ * Register our REST routes
+ */
+add_action( 'rest_api_init', function() {
+	// The Rms_Api_Controller defines and registers our "role-assignment" endpoint.
+	$api_controller = new Rms_Api_Controller();
+	$api_controller->register_routes();
+});

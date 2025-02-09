@@ -36,13 +36,15 @@ class Rms_Helper_Controller {
 	 * Sometimes WP users end up with multiple roles.
 	 * This method determines the highest level of role for a user in the cool kids network.
 	 * */
-	public static function user_highest_role($user): string {
+	public static function user_highest_role($user): ?string {
 		if(in_array('coolest_kid', $user->roles)){
 			$role = 'Coolest Kid';
 		} elseif (in_array('cooler_kid', $user->roles)){
 			$role = 'Cooler Kid';
-		} else {
+		} elseif(in_array('cool_kid', $user->roles)) {
 			$role = 'Cool Kid';
+		} else {
+			return null;
 		}
 		return $role;
 	}
